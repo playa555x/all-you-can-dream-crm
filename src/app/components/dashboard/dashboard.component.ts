@@ -81,617 +81,228 @@ import { MatSidenav } from '@angular/material/sidenav';
     ],
     template: `
     <div class="dashboard-container">
-      <div class="welcome-section">
-        <h1>Willkommen zurück!</h1>
-        <p class="text-gray-600">Hier ist Ihr Überblick für heute</p>
-      </div>
+      <div class="content-wrapper">
+        <div class="welcome-section">
+          <h1>Willkommen im CRM-System</h1>
+          <p>Verwalten Sie Ihre Kundenbeziehungen effizient und effektiv</p>
+        </div>
 
-      <div class="quick-actions">
-        <button mat-raised-button color="primary" class="action-button">
-          <mat-icon>add</mat-icon>
-          Neuer Deal
-        </button>
-        <button mat-raised-button color="accent" class="action-button">
-          <mat-icon>person_add</mat-icon>
-          Kontakt anlegen
-        </button>
-        <button mat-raised-button color="warn" class="action-button">
-          <mat-icon>event</mat-icon>
-          Termin planen
-        </button>
-        <button mat-raised-button class="action-button">
-          <mat-icon>mail</mat-icon>
-          E-Mail verfassen
-        </button>
-      </div>
+        <div class="quick-actions">
+          <button mat-raised-button color="primary">
+            <mat-icon>add</mat-icon>
+            Neuer Kontakt
+          </button>
+          <button mat-raised-button color="accent">
+            <mat-icon>assignment</mat-icon>
+            Neue Aufgabe
+          </button>
+          <button mat-raised-button color="warn">
+            <mat-icon>event</mat-icon>
+            Termin planen
+          </button>
+        </div>
 
-      <div class="stats-grid">
-        <mat-card class="stat-card" [class.positive]="true">
-          <mat-card-content>
-            <div class="stat-icon">
-              <mat-icon>work</mat-icon>
-            </div>
-            <div class="stat-info">
-              <h3>Aktive Projekte</h3>
-              <p class="stat-value">{{ activeProjects }}</p>
-              <div class="stat-trend">
-                <mat-icon class="trend-icon">trending_up</mat-icon>
-                <span>+12% vs. letzten Monat</span>
-              </div>
+        <div class="stats-grid">
+          <mat-card class="stat-card">
+            <mat-card-header>
+              <mat-card-title>Aktive Projekte</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="stat-value">{{activeProjects}}</div>
               <mat-progress-bar mode="determinate" [value]="75"></mat-progress-bar>
-            </div>
-          </mat-card-content>
-        </mat-card>
+            </mat-card-content>
+          </mat-card>
 
-        <mat-card class="stat-card" [class.neutral]="true">
-          <mat-card-content>
-            <div class="stat-icon">
-              <mat-icon>people</mat-icon>
-            </div>
-            <div class="stat-info">
-              <h3>Kunden</h3>
-              <p class="stat-value">{{ totalCustomers }}</p>
-              <div class="stat-trend">
-                <mat-icon class="trend-icon">trending_flat</mat-icon>
-                <span>Stabil vs. letzten Monat</span>
-              </div>
-              <mat-progress-bar mode="determinate" [value]="60"></mat-progress-bar>
-            </div>
-          </mat-card-content>
-        </mat-card>
+          <mat-card class="stat-card">
+            <mat-card-header>
+              <mat-card-title>Kunden gesamt</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="stat-value">{{totalCustomers}}</div>
+              <mat-progress-bar mode="determinate" [value]="85"></mat-progress-bar>
+            </mat-card-content>
+          </mat-card>
 
-        <mat-card class="stat-card" [class.negative]="true">
-          <mat-card-content>
-            <div class="stat-icon">
-              <mat-icon>receipt</mat-icon>
-            </div>
-            <div class="stat-info">
-              <h3>Offene Rechnungen</h3>
-              <p class="stat-value">{{ openInvoices }}</p>
-              <div class="stat-trend">
-                <mat-icon class="trend-icon">trending_down</mat-icon>
-                <span>-5% vs. letzten Monat</span>
-              </div>
+          <mat-card class="stat-card">
+            <mat-card-header>
+              <mat-card-title>Offene Rechnungen</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="stat-value">{{openInvoices}}</div>
               <mat-progress-bar mode="determinate" [value]="45"></mat-progress-bar>
-            </div>
-          </mat-card-content>
-        </mat-card>
+            </mat-card-content>
+          </mat-card>
 
-        <mat-card class="stat-card" [class.positive]="true">
-          <mat-card-content>
-            <div class="stat-icon">
-              <mat-icon>inventory_2</mat-icon>
-            </div>
-            <div class="stat-info">
-              <h3>Lagerbestand</h3>
-              <p class="stat-value">{{ inventoryItems }}</p>
-              <div class="stat-trend">
-                <mat-icon class="trend-icon">trending_up</mat-icon>
-                <span>+8% vs. letzten Monat</span>
-              </div>
-              <mat-progress-bar mode="determinate" [value]="80"></mat-progress-bar>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
+          <mat-card class="stat-card">
+            <mat-card-header>
+              <mat-card-title>Lagerbestand</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="stat-value">{{inventoryItems}}</div>
+              <mat-progress-bar mode="determinate" [value]="60"></mat-progress-bar>
+            </mat-card-content>
+          </mat-card>
+        </div>
 
-      <div class="charts-container">
-        <mat-card class="chart-card">
-          <mat-card-header>
-            <mat-card-title>Pipeline-Übersicht</mat-card-title>
-            <div class="card-actions">
-              <mat-button-toggle-group>
-                <mat-button-toggle value="week">Woche</mat-button-toggle>
-                <mat-button-toggle value="month" checked>Monat</mat-button-toggle>
-                <mat-button-toggle value="quarter">Quartal</mat-button-toggle>
-              </mat-button-toggle-group>
-              <button mat-icon-button [matMenuTriggerFor]="chartMenu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-            </div>
-          </mat-card-header>
-          <mat-card-content>
-            <div class="chart-placeholder">
-              <mat-progress-spinner mode="determinate" [value]="75"></mat-progress-spinner>
-              <p>Pipeline-Übersicht wird geladen...</p>
-            </div>
-          </mat-card-content>
-        </mat-card>
+        <div class="charts-container">
+          <mat-card class="chart-card">
+            <mat-card-header>
+              <mat-card-title>Projektstatus</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <canvas id="projectStatusChart"></canvas>
+            </mat-card-content>
+          </mat-card>
 
-        <mat-card class="chart-card">
-          <mat-card-header>
-            <mat-card-title>Umsatzentwicklung</mat-card-title>
-            <div class="card-actions">
-              <mat-button-toggle-group>
-                <mat-button-toggle value="week">Woche</mat-button-toggle>
-                <mat-button-toggle value="month" checked>Monat</mat-button-toggle>
-                <mat-button-toggle value="quarter">Quartal</mat-button-toggle>
-              </mat-button-toggle-group>
-              <button mat-icon-button [matMenuTriggerFor]="chartMenu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-            </div>
-          </mat-card-header>
-          <mat-card-content>
-            <div class="chart-placeholder">
-              <mat-progress-spinner mode="determinate" [value]="60"></mat-progress-spinner>
-              <p>Umsatzentwicklung wird geladen...</p>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
+          <mat-card class="chart-card">
+            <mat-card-header>
+              <mat-card-title>Umsatzentwicklung</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <canvas id="revenueChart"></canvas>
+            </mat-card-content>
+          </mat-card>
+        </div>
 
-      <div class="bottom-grid">
-        <mat-card class="recent-activities">
-          <mat-card-header>
-            <mat-card-title>Aktuelle Aktivitäten</mat-card-title>
-            <button mat-button color="primary">Alle anzeigen</button>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-list>
-              <mat-list-item *ngFor="let activity of recentActivities">
-                <div class="activity-item">
-                  <div class="activity-icon" [class]="activity.icon">
-                    <mat-icon>{{ activity.icon }}</mat-icon>
-                  </div>
-                  <div class="activity-content">
-                    <h4>{{ activity.title }}</h4>
-                    <p>{{ activity.description }}</p>
-                    <span class="activity-time">{{ activity.time }}</span>
-                  </div>
-                </div>
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
-
-        <mat-card class="upcoming-tasks">
-          <mat-card-header>
-            <mat-card-title>Anstehende Aufgaben</mat-card-title>
-            <button mat-button color="primary">Alle anzeigen</button>
-          </mat-card-header>
-          <mat-card-content>
-            <mat-list>
-              <mat-list-item *ngFor="let task of upcomingTasks">
-                <div class="task-item">
-                  <mat-checkbox [checked]="task.completed">{{ task.title }}</mat-checkbox>
-                  <span class="task-due">{{ task.dueDate }}</span>
-                </div>
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
+        <div class="recent-activities">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Letzte Aktivitäten</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-list>
+                <mat-list-item *ngFor="let activity of recentActivities">
+                  <mat-icon matListItemIcon>{{activity.icon}}</mat-icon>
+                  <div matListItemTitle>{{activity.title}}</div>
+                  <div matListItemLine>{{activity.description}}</div>
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
     </div>
-
-    <mat-menu #chartMenu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>file_download</mat-icon>
-        <span>Exportieren</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>share</mat-icon>
-        <span>Teilen</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>refresh</mat-icon>
-        <span>Aktualisieren</span>
-      </button>
-    </mat-menu>
   `,
     styles: [`
     .dashboard-container {
-      min-height: 100%;
-      background: #f8fafc;
-      overflow-x: hidden;
+      height: 100vh;
+      width: 100%;
+      overflow: auto;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: #f5f5f5;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .content-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
     .welcome-section {
-      margin-bottom: 2rem;
-
+      text-align: center;
+      margin-bottom: 32px;
       h1 {
-        font-size: 2rem;
-        font-weight: 600;
-        color: #1e293b;
+        font-size: 2.5rem;
         margin: 0;
-        line-height: 1.2;
+        color: #2c3e50;
       }
-
       p {
-        margin-top: 0.5rem;
-        font-size: 1.1rem;
-        color: #64748b;
+        font-size: 1.2rem;
+        color: #7f8c8d;
+        margin: 8px 0 0;
       }
     }
 
     .quick-actions {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-
-      .action-button {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0 1.5rem;
-        height: 42px;
-        border-radius: 0.5rem;
-        font-weight: 500;
-        font-size: 0.875rem;
-        transition: all 0.2s;
-
-        &:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        }
-
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 32px;
+      button {
+        min-width: 160px;
         mat-icon {
-          font-size: 20px;
-          width: 20px;
-          height: 20px;
+          margin-right: 8px;
         }
       }
     }
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
     }
 
     .stat-card {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-      overflow: hidden;
-      
+      border-radius: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
       &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
       }
-
-      &.positive .trend-icon {
-        color: #22c55e;
+      mat-card-header {
+        padding: 16px;
       }
-
-      &.neutral .trend-icon {
-        color: #64748b;
-      }
-
-      &.negative .trend-icon {
-        color: #ef4444;
-      }
-
       mat-card-content {
-        display: flex;
-        padding: 1.5rem;
-        gap: 1rem;
+        padding: 0 16px 16px;
       }
-    }
-
-    .stat-icon {
-      background: #f1f5f9;
-      border-radius: 0.75rem;
-      width: 56px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-
-      mat-icon {
-        font-size: 28px;
-        width: 28px;
-        height: 28px;
-        color: #64748b;
-      }
-    }
-
-    .stat-info {
-      flex: 1;
-      min-width: 0;
-
-      h3 {
-        margin: 0;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: #64748b;
-      }
-
       .stat-value {
-        margin: 0.5rem 0;
-        font-size: 1.875rem;
-        font-weight: 600;
-        color: #1e293b;
-        line-height: 1.2;
-      }
-
-      .stat-trend {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-        font-size: 0.875rem;
-        color: #64748b;
-
-        .trend-icon {
-          font-size: 20px;
-          width: 20px;
-          height: 20px;
-        }
-      }
-
-      mat-progress-bar {
-        border-radius: 4px;
-        height: 6px;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 16px 0;
+        color: #2c3e50;
       }
     }
 
     .charts-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-
-      @media (max-width: 1024px) {
-        grid-template-columns: 1fr;
-      }
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
     }
 
     .chart-card {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      overflow: hidden;
-
-      mat-card-header {
-        padding: 1.5rem 1.5rem 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #e2e8f0;
-        margin-bottom: 0;
-
-        mat-card-title {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: #1e293b;
-          margin: 0;
-        }
-      }
-
+      border-radius: 12px;
       mat-card-content {
-        padding: 1.5rem;
+        height: 300px;
+        padding: 16px;
       }
     }
 
-    .card-actions {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-
-      mat-button-toggle-group {
-        border: none;
-        border-radius: 0.5rem;
-        background: #f1f5f9;
-        height: 36px;
-        
-        mat-button-toggle {
-          background: transparent;
-          color: #64748b;
-          border: none;
-          font-size: 0.875rem;
-          line-height: 36px;
-          height: 36px;
-          
-          &.mat-button-toggle-checked {
-            background: #e2e8f0;
-            color: #1e293b;
-          }
-        }
+    .recent-activities {
+      mat-card {
+        border-radius: 12px;
       }
-    }
-
-    .chart-placeholder {
-      height: 300px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #f8fafc;
-      border-radius: 0.75rem;
-      color: #64748b;
-      gap: 1rem;
-
-      mat-progress-spinner {
-        ::ng-deep circle {
-          stroke: #3b82f6;
+      mat-list-item {
+        height: auto;
+        margin-bottom: 8px;
+        &:hover {
+          background-color: #f8f9fa;
         }
-      }
-
-      p {
-        margin: 0;
-        font-size: 0.875rem;
-      }
-    }
-
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 1.5rem;
-
-      @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .recent-activities, .upcoming-tasks {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      overflow: hidden;
-
-      mat-card-header {
-        padding: 1.5rem 1.5rem 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid #e2e8f0;
-        margin: 0;
-
-        mat-card-title {
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: #1e293b;
-          margin: 0;
-        }
-      }
-
-      mat-card-content {
-        padding: 0 1.5rem;
-        max-height: 400px;
-        overflow-y: auto;
-
-        &::-webkit-scrollbar {
-          width: 8px;
-        }
-
-        &::-webkit-scrollbar-track {
-          background: transparent;
-        }
-
-        &::-webkit-scrollbar-thumb {
-          background-color: #cbd5e1;
-          border-radius: 4px;
-          
-          &:hover {
-            background-color: #94a3b8;
-          }
-        }
-      }
-    }
-
-    .activity-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid #e2e8f0;
-
-      &:last-child {
-        border-bottom: none;
-      }
-
-      .activity-icon {
-        background: #f1f5f9;
-        border-radius: 0.5rem;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-
-        &.work { color: #3b82f6; }
-        &.people { color: #22c55e; }
-        &.receipt { color: #f59e0b; }
-        &.inventory_2 { color: #8b5cf6; }
-
-        mat-icon {
-          font-size: 20px;
-          width: 20px;
-          height: 20px;
-        }
-      }
-
-      .activity-content {
-        flex: 1;
-        min-width: 0;
-
-        h4 {
-          margin: 0;
-          font-size: 0.875rem;
-          font-weight: 500;
-          color: #1e293b;
-        }
-
-        p {
-          margin: 0.25rem 0;
-          font-size: 0.875rem;
-          color: #64748b;
-        }
-
-        .activity-time {
-          font-size: 0.75rem;
-          color: #94a3b8;
-          display: block;
-          margin-top: 0.25rem;
-        }
-      }
-    }
-
-    .task-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid #e2e8f0;
-
-      &:last-child {
-        border-bottom: none;
-      }
-
-      mat-checkbox {
-        ::ng-deep .mat-checkbox-label {
-          font-size: 0.875rem;
-          color: #1e293b;
-        }
-      }
-
-      .task-due {
-        font-size: 0.75rem;
-        color: #64748b;
-        white-space: nowrap;
       }
     }
 
     @media (max-width: 768px) {
-      .dashboard-container {
-        padding: 1rem;
-      }
-
-      .welcome-section {
-        margin-bottom: 1.5rem;
-
-        h1 {
-          font-size: 1.5rem;
-        }
-      }
-
-      .quick-actions {
-        margin-bottom: 1.5rem;
-        
-        .action-button {
-          width: 100%;
-          justify-content: center;
-        }
-      }
-
       .stats-grid {
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        grid-template-columns: 1fr;
       }
-
       .charts-container {
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        grid-template-columns: 1fr;
       }
-
-      .bottom-grid {
-        gap: 1rem;
+      .quick-actions {
+        flex-direction: column;
+        button {
+          width: 100%;
+        }
       }
     }
   `]
