@@ -14,24 +14,23 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatCommonModule,
-    MatRippleModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatBadgeModule,
-    MatExpansionModule,
-    MatDividerModule
-  ],
-  template: `
+    selector: 'app-root',
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatCommonModule,
+        MatRippleModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatListModule,
+        MatIconModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatBadgeModule,
+        MatExpansionModule,
+        MatDividerModule
+    ],
+    template: `
     <div class="app-container">
       <mat-toolbar class="toolbar">
         <div class="flex items-center">
@@ -179,7 +178,7 @@ import { MatDividerModule } from '@angular/material/divider';
       </mat-sidenav-container>
     </div>
   `,
-  styles: [`
+    styles: [`
     .app-container {
       height: 100vh;
       display: flex;

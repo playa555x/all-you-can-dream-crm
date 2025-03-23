@@ -39,48 +39,47 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MatProgressBarModule,
-    MatListModule,
-    MatDividerModule,
-    MatChipsModule,
-    MatTooltipModule,
-    MatMenuModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatDialogModule,
-    MatSnackBarModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatAutocompleteModule,
-    MatSlideToggleModule,
-    MatExpansionModule,
-    MatTabsModule,
-    MatStepperModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatSliderModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonToggleModule,
-    MatBadgeModule,
-    MatBottomSheetModule,
-    MatRippleModule,
-    MatGridListModule,
-    MatTreeModule,
-    MatProgressSpinnerModule
-  ],
-  template: `
+    selector: 'app-dashboard',
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatIconModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        MatListModule,
+        MatDividerModule,
+        MatChipsModule,
+        MatTooltipModule,
+        MatMenuModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatDialogModule,
+        MatSnackBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatSlideToggleModule,
+        MatExpansionModule,
+        MatTabsModule,
+        MatStepperModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        MatSliderModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatButtonToggleModule,
+        MatBadgeModule,
+        MatBottomSheetModule,
+        MatRippleModule,
+        MatGridListModule,
+        MatTreeModule,
+        MatProgressSpinnerModule
+    ],
+    template: `
     <div class="dashboard-container">
       <div class="welcome-section">
         <h1>Willkommen zurück!</h1>
@@ -280,7 +279,7 @@ import { MatSidenav } from '@angular/material/sidenav';
       </button>
     </mat-menu>
   `,
-  styles: [`
+    styles: [`
     .dashboard-container {
       min-height: 100%;
       background: #f8fafc;
